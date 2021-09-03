@@ -8,6 +8,6 @@ jobs:
     steps:
     	- name: Install xmllint
 	  run: |
-	  sudo apt-get install libxml2-utils 
+	  	sudo apt-get install libxml2-utils 
 
 
