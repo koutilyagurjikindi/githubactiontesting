@@ -1,6 +1,9 @@
 name: my workflow
 on: 
-  push
+  push:
+    branches:
+      - '*'
+      - '!master'
 
 jobs:
   test:
