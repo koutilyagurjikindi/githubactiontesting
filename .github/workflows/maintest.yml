@@ -1,20 +1,20 @@
-name: workflow
-
+name: GITHUB actions
 
 on: 
   push:
-    branches:
-      - "master"
-      
+
 jobs:
-  build:
+  vm: 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set env
-        run: |
-          echo "GITHUB_SHA_SHORTS=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
-      - name: Test
-        run: | 
-          echo $GITHUB_SHA_SHORT
-          
+      - run: |
+          echo This job does not specify a container
+          echo It runs directly on the virtual machine.
+  container:
+    runs-on: ubuntu-latest
+    container:  node:10.16-jessie
+    steps:
+      - run: | 
+          echo This job does specify a container
+          echo It runs in the container instead of the VM.
+        name: Run in container
