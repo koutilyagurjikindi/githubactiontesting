@@ -1,20 +1,20 @@
-name: GITHUB actions
-
+name: my workflow
 on: 
   push:
+  pull_request:
 
 jobs:
-  vm: 
+  test-packages:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo This job does not specify a container
-          echo It runs directly on the virtual machine.
-  container:
+      - uses: actions/checkout@v2
+      - name: test packages
+        run: echo "Running tests"
+  deploy-packages:
+    if: startsWith(github.ref,  'refs/tags/v')
     runs-on: ubuntu-latest
-    container:  node:10.16-jessie
+    needs: test-packages
     steps:
-      - run: | 
-          echo This job does specify a container
-          echo It runs in the container instead of the VM.
-        name: Run in container
+      - uses: actions/checkout@v2
+      - name: deploy packages
+        run: echo "Deploying packages"
