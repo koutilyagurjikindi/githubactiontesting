@@ -1,15 +1,17 @@
-name: GITHUBACTION
+name: "GITHUB ACTIONS"
 on: 
   push:
-      branches:
-        - '*'
-        - '!master'
-        
+    branches:
+      - '*'
+
 jobs:
-  phptest:
-    name: "Github Action"
+  nodejstest:
+    name: "Nodejs Test"
     runs-on: ubuntu-latest
     steps:
-      - name: "check the repo"
-        uses: action/checkout@v2
-  
+      - name: "Github actions store ssh_key"
+        run: |
+          'echo "$SSH_KEY" > key'
+        shell: bash
+        env:
+          SSH_KEY: ${{secrets.SSH_KEY}}
